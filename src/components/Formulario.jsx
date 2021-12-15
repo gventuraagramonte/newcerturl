@@ -7,10 +7,12 @@ const Formulario = ({ setCertificado, certificado }) => {
     name: "",
     imageURL: "",
     price: 1,
+    dateDomain: "",
+    daysExp: "",
   });
 
   // Extraemos las variables
-  const { description, name, imageURL, price } = proyecto;
+  const { description, name, imageURL, price, dateDomain } = proyecto;
   const [error, setError] = useState(false);
 
   // Lee los contenidos del input
@@ -25,7 +27,14 @@ const Formulario = ({ setCertificado, certificado }) => {
     e.preventDefault();
 
     // Validación del formulario
-    if ([proyecto.description, proyecto.name, proyecto.imageURL].includes("")) {
+    if (
+      [
+        proyecto.description,
+        proyecto.name,
+        proyecto.imageURL,
+        proyecto.dateDomain,
+      ].includes("")
+    ) {
       console.log("Hay al menos un campo vacio");
       setError(true);
       return;
@@ -36,7 +45,6 @@ const Formulario = ({ setCertificado, certificado }) => {
     // Objeto certificado
     const guardarFormulario = async () => {
       const hola = await createURL(proyecto);
-      console.log(hola.status);
       window.location.reload();
       return "Listo";
     };
@@ -48,6 +56,7 @@ const Formulario = ({ setCertificado, certificado }) => {
       name: "",
       imageURL: "",
       price: 1,
+      dateDomain: "",
     });
   };
 
@@ -114,7 +123,9 @@ const Formulario = ({ setCertificado, certificado }) => {
             id="datedominio"
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            defaultValue="2020-11-02"
+            name="dateDomain"
+            value={dateDomain}
+            onChange={onChangeProyecto}
           />
         </div>
         <div className="mb-5">

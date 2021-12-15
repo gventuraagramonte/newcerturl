@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     const consultarAPI = async () => {
       const respuesta = await fetchURL();
+      console.log(respuesta);
       setResultado(respuesta.data.products);
     };
     consultarAPI();
